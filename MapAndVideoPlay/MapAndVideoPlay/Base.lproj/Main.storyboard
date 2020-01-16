@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="GiV-bk-Pyj">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--New Movie View Controller-->
+        <scene sceneID="43I-jj-NU0">
+            <objects>
+                <viewController id="Gfh-l8-Nvo" customClass="NewMovieViewController" customModule="MapAndVideoPlay" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zXb-1f-7Yc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="2ec-SM-22V"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="zjS-uj-f58"/>
+                    <connections>
+                        <segue destination="IG1-fB-e8V" kind="show" id="D9i-01-gSZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CVk-8F-djC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-78" y="-508"/>
+        </scene>
+        <!--Camera View Controller-->
+        <scene sceneID="oKT-EW-xGH">
+            <objects>
+                <viewController id="IG1-fB-e8V" customClass="CameraViewController" customModule="MapAndVideoPlay" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nnI-pa-oNY">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c1d-1c-P4e">
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vjb-EK-TXu">
+                                        <rect key="frame" x="182" y="718" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="Eiz-7b-QDr"/>
+                                            <constraint firstAttribute="width" constant="50" id="U0O-hh-n2B"/>
+                                        </constraints>
+                                        <color key="tintColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" image="Record"/>
+                                        <state key="selected" image="Stop"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="Vjb-EK-TXu" firstAttribute="centerX" secondItem="c1d-1c-P4e" secondAttribute="centerX" id="K6d-Pw-OIF"/>
+                                    <constraint firstAttribute="bottom" secondItem="Vjb-EK-TXu" secondAttribute="bottom" constant="40" id="NZb-77-zs5"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="c1d-1c-P4e" firstAttribute="leading" secondItem="me6-WM-9Lj" secondAttribute="leading" id="hxN-QL-gAk"/>
+                            <constraint firstItem="c1d-1c-P4e" firstAttribute="top" secondItem="me6-WM-9Lj" secondAttribute="top" id="jBc-6J-DUx"/>
+                            <constraint firstItem="me6-WM-9Lj" firstAttribute="bottom" secondItem="c1d-1c-P4e" secondAttribute="bottom" constant="-34" id="l6P-HS-Tv2"/>
+                            <constraint firstItem="me6-WM-9Lj" firstAttribute="trailing" secondItem="c1d-1c-P4e" secondAttribute="trailing" id="yfi-Kf-Ps3"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="me6-WM-9Lj"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="pOk-WD-yGv"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O2m-LH-sXc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="637.68115942028987" y="-508.25892857142856"/>
+        </scene>
+        <!--Show Video View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ShowVideoViewController" customModule="MapAndVideoPlay" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="NmC-Fp-hmf"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-78" y="138"/>
+        </scene>
+        <!--Root View Controller-->
+        <scene sceneID="bZG-wY-5gE">
+            <objects>
+                <tableViewController id="mIa-lZ-wgk" customClass="MovieTitlesTableViewController" customModule="MapAndVideoPlay" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="el3-Eb-PRd">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="VideoCell" id="Lzo-Xr-AHP">
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Lzo-Xr-AHP" id="vGO-Jq-3e3">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="ShowVideoDetailSegue" id="66w-tf-a2r"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="mIa-lZ-wgk" id="26L-aK-fgC"/>
+                            <outlet property="delegate" destination="mIa-lZ-wgk" id="wKz-eL-o4b"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="uEw-fa-FBu">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="CcX-hm-AhU">
+                            <connections>
+                                <segue destination="Gfh-l8-Nvo" kind="show" identifier="ShowTakeVideoSegue" id="lya-30-8Pz"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6UM-j2-Li8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-791" y="138"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="q6w-fd-7ke">
+            <objects>
+                <navigationController id="GiV-bk-Pyj" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="s6A-58-Bhx">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="mIa-lZ-wgk" kind="relationship" relationship="rootViewController" id="hgw-xO-JW7"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JB8-Mm-HTW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1501" y="138"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Record" width="116" height="116"/>
+        <image name="Stop" width="116" height="116"/>
+    </resources>
+</document>
