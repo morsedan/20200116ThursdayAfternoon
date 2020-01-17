@@ -13,7 +13,7 @@ class MapViewController: UIViewController {
     
     // MARK: - Outlets
     
-    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var myMapView: MKMapView!
     
     // MARK: - Properties
     
@@ -24,8 +24,8 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        mapView.delegate = self
-        mapView.register(MKMarkerAnnotationView.self, forAnnotationViewWithReuseIdentifier: PropertyKeys.movieMapView)
+        myMapView.delegate = self
+        myMapView.register(MKMarkerAnnotationView.self, forAnnotationViewWithReuseIdentifier: PropertyKeys.movieMapView)
         
         let coordinates = makeCoordinates()
         
@@ -44,7 +44,7 @@ class MapViewController: UIViewController {
             
         }
         
-        mapView.addAnnotations(movieController.moviesWithCoordinates)
+        self.myMapView.addAnnotations(movieController.moviesWithCoordinates)
         return coordinates
     }
     
