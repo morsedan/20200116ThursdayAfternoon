@@ -14,4 +14,7 @@ struct PropertyKeys {
     static let viewVideoSegue = "ShowVideoDetailSegue"
     static let createVideoSegue = "ShowTakeVideoSegue"
     static let showCameraSegue = "ShowCamera"
+    static let tableViewSegue = "ShowTableViewSegue"
+    
+    static let movieMapView = "MoviesView"
 }

@@ -7,84 +7,129 @@
 //
 
 import UIKit
+import AVFoundation
 
 class MovieTitlesTableViewController: UITableViewController {
+    
+    // MARK: - Properties
+    
+    var movieController: MovieController?
+    var dateFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "LLL dd yyyy 'at' h:mm:ss a"
+        formatter.timeZone = TimeZone.autoupdatingCurrent
+        return formatter
+    }
+    
+    // MARK: - Lifecycle Methods
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        movieController?.loadFromFile()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return movieController?.movies.count ?? 0
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: PropertyKeys.videoTitleCell, for: indexPath)
 
-        // Configure the cell...
+        guard let movie = movieController?.movies[indexPath.row] else { return UITableViewCell() }
+        let dateString = dateFormatter.string(from: movie.date)
+        cell.textLabel?.text = dateString
 
         return cell
     }
-    */
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
+            guard let movie = movieController?.movies[indexPath.row] else { return }
+            movieController?.deleteMovie(movie)
             tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+    
+    // MARK: - Authorization
+    
+    private func requestPermissionAndShowCamera() {
+        let status = AVCaptureDevice.authorizationStatus(for: .video)
+        
+        switch status {
+            
+        case .notDetermined:
+            // First time user - they haven't seen the permission dialog
+            requestPermission()
+        case .restricted:
+            // Parental controls disabled the camera
+            fatalError("Video is disabled for the user (parental controls?)")
+            // TODO: Add UI to inform the user (talk to parents)
+        case .denied:
+            // User did not give access (possibly on accident)
+            fatalError("Tell the user they need to enable Privacy for Video")
+            // TODO: Add UI to inform user how
+        case .authorized:
+            // We asked for permission (2nd+ time they used the app)
+            showCamera()
+        @unknown default:
+            fatalError("A new status was added that we need to handle")
+        }
     }
-    */
+    
+    private func requestPermission() {
+        AVCaptureDevice.requestAccess(for: .video) { (granted) in
+            guard granted else {
+                fatalError("Tell user they need to enable Privacy for Video")
+            }
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
 
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
+                self.showCamera()
+            }
+        }
     }
-    */
+    
+    private func showCamera() {
+        performSegue(withIdentifier: PropertyKeys.showCameraSegue, sender: self)
+    }
 
-    /*
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    @IBAction func requestPermissionsOrShowCamera(_ sender: Any) {
+        requestPermissionAndShowCamera()
     }
-    */
+    
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == PropertyKeys.showCameraSegue {
+            guard let createVC = segue.destination as? CameraViewController else { return }
+            createVC.movieController = movieController
+        } else if segue.identifier == PropertyKeys.viewVideoSegue {
+            guard let viewVideoVC = segue.destination as? ShowVideoViewController,
+                let indexPath = tableView.indexPathForSelectedRow else { return }
+            viewVideoVC.movie = movieController?.movies[indexPath.row]
+        }
+    }
 }
